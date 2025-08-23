@@ -4,31 +4,43 @@ document.addEventListener("DOMContentLoaded", async () => {
       id: 100,
       name: "Hardik Jain",
       image: "https://ik.imagekit.io/fancall/Rectangle%2018864-3.png",
+      price: "₹1500",
+      fakePrice: "₹100",
     },
     {
       id: 2,
       name: "Neha Kakkad",
       image: "https://ik.imagekit.io/fancall/Rectangle%2018864-2.png",
+      price: "₹500",
+      fakePrice: "₹1000",
     },
     {
       id: 3,
       name: "Pratic Kumar",
       image: "https://ik.imagekit.io/fancall/Rectangle%2018864-1.png",
+      price: "₹1500",
+      fakePrice: "₹1000",
     },
     {
       id: 4,
       name: "Arya Parmar",
       image: "https://ik.imagekit.io/fancall/Rectangle%2018864.png",
+      price: "₹1500",
+      fakePrice: "₹300",
     },
     {
       id: 5,
       name: "Raju Rastogi",
       image: "https://ik.imagekit.io/fancall/Rectangle%2018864-3.png",
+      price: "₹1500",
+      fakePrice: "₹700",
     },
     {
       id: 6,
       name: "Ketrina kaif",
       image: "https://ik.imagekit.io/fancall/Rectangle%2018864-2.png",
+      price: "₹1500",
+      fakePrice: "₹180",
     },
   ];
   // url params
@@ -61,7 +73,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function createCreatorCard(creator) {
+    console.log("Creating card for creator:", creator);
+    const card = document.createElement("div");
     const creatorCard = document.createElement("div");
+    const bookButton = document.createElement("div");
     creatorCard.className = "creator-card";
     creatorCard.id = `creator-id-${creator.id}`;
     creatorCard.setAttribute("data-id", creator.id);
@@ -71,15 +86,39 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="creator-inner-card">
         <img class="creator-card-img" src="${creator.image}" alt="${creator.name}" />
       </div>
-      <div class="creator-card-text" title="${creator.name}">${creator.name}</div>
+      <div class="creator-card-text" title="${creator.name}" >
+        <div>${creator.name}</div>
+        <div class="creator-card-prices">
+          <span class="creator-card-price">${creator.price}</span>
+          <span class="creator-card-fake-price">${creator.fakePrice}</span>
+        </div>
+      </div>
     `;
+    // Book Button
+    bookButton.className = "book-btn";
+    bookButton.innerText = "Book Now";
+    card.appendChild(creatorCard);
+    card.appendChild(bookButton);
 
-    creatorCard.addEventListener("click", () => {
-      const creatorId = creatorCard.getAttribute("data-id");
-      postMessageToDevice({ id: creatorId, page: "CREATOR-PROFILE" });
+    card.querySelector(".book-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      postMessageToDevice({ id: creator.id, page: "BOOKING" });
     });
 
-    return creatorCard;
+    // creatorCard.addEventListener("click", () => {
+    //   const creatorId = creatorCard.getAttribute("data-id");
+    //   postMessageToDevice({ id: creatorId, page: "CREATOR-PROFILE" });
+    // });
+
+    return card;
+  }
+
+  function getInitials(name) {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase();
   }
 
   function postMessageToDevice(message) {

@@ -14,7 +14,7 @@ body {
   padding: 10px;
   width: 90vw;
   /* box-shadow: inset 0 0 10px #0001; */
-  border-radius: 12px;
+  border-radius: 18px;
   border: 1px solid #0003;
 }
 /* Top Banner */
@@ -38,33 +38,36 @@ body {
 
 .main-heading {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.8rem; /* bigger for impact */
   font-weight: bolder;
-  margin-bottom: 18px;
-  left: 25%;
+  margin: 10px auto 18px auto;
   letter-spacing: 1px;
+  left: 25%;
+  display: inline-block; /* makes underline match text width */
+  background: linear-gradient(
+    90deg,
+    #ff9800,
+    #f44336
+  ); /* orange-red gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* gradient text */
   position: relative;
-  display: inline-block;
-  margin: 10px auto;
 }
 
 .main-heading::after {
   content: "";
   position: absolute;
-  left: 0%;
-  bottom: 1px;
+  left: 0;
+  bottom: 0.5px; /* space below text */
   width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, #00a7e1 0%, #0028a5 100%);
+  height: 1px; /* underline thickness */
+  background: linear-gradient(90deg, #ff9800, #f44336);
   border-radius: 2px;
 }
 .heading-blue {
   color: #2196f3;
-  font-weight: 700;
-}
-.heading-black {
-  color: #1a237e;
-  font-weight: 700;
+  font-weight: bolder;
+  text-align: center;
 }
 
 /* Cards Container */
@@ -88,9 +91,9 @@ body {
 .creator-card {
   background: #fff;
   border-radius: 10px;
-  border: 1px solid #000000;
+  border: 1px solid #d7d7d7;
   box-shadow: 0 2px 8px #0002;
-  width: 102px;
+  width: 120px;
   height: 168px;
   overflow: hidden;
   display: flex;
@@ -115,7 +118,7 @@ body {
 }
 
 .creator-inner-card {
-  width: 100px;
+  width: 120px;
   height: 130px;
   display: flex;
   align-items: center;
@@ -143,17 +146,70 @@ body {
   color: #fff;
   font-size: 0.7rem;
   font-weight: bold;
-  text-align: center;
-  padding: 5px 0 0 0;
-
+  /* text-align: center; */
+  padding: 5px 0 0 6px;
+  font-weight: bold;
   letter-spacing: 0.2px;
   min-height: 36px;
   line-height: 1.1;
   position: relative;
   z-index: 2;
 }
+.creator-card-prices {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 2px;
+}
+.creator-card-price {
+  font-size: 0.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 2px;
+  letter-spacing: 0.1px;
+}
+.creator-card-fake-price {
+  font-size: 0.5rem;
+  color: #ffffff;
+  font-weight: 400;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+  /* text-decoration: line-through; */
+  opacity: 0.7;
+}
+.book-btn {
+  width: 80;
+  height: 20;
+  opacity: 1;
+  border-radius: 40px;
+  border-width: 1px;
+  gap: 2px;
+  padding-top: 7.5px;
+  padding-right: 12px;
+  padding-bottom: 7.5px;
+  padding-left: 12px;
 
-.creator-card-text::after {
+  color: white;
+  background: linear-gradient(
+    65.13deg,
+    #ed476d 18.84%,
+    rgba(246, 138, 90, 0.71) 94.23%,
+    rgba(247, 146, 87, 0.305862) 121.38%,
+    rgba(248, 153, 85, 0) 141.93%
+  );
+  border: 1px solid;
+
+  border-image-source: linear-gradient(0deg, #000000, #000000),
+    linear-gradient(
+      65.13deg,
+      #ed476d 18.84%,
+      rgba(246, 138, 90, 0.71) 94.23%,
+      rgba(247, 146, 87, 0.305862) 121.38%,
+      rgba(248, 153, 85, 0) 141.93%
+    );
+  box-shadow: 3px 3px 4px 0px #ffffff52 inset;
+}
+/* .creator-card-text::after {
   content: "Artist";
   display: block;
   font-size: 0.6rem;
@@ -161,7 +217,7 @@ body {
   font-weight: 400;
   margin-top: 2px;
   letter-spacing: 0.1px;
-}
+} */
 
 .creator-card-link {
   color: white;
@@ -310,4 +366,41 @@ body {
   color: #e0e0e0; /* Lighter grey for better contrast */
   font-size: 1rem;
   margin-top: 2px;
+}
+
+/* DHAMAKA DEALS header and subtitle styles for reference image */
+.dhamaka-header {
+  text-align: center;
+  margin-bottom: 0.2rem;
+  padding-bottom: 4px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: inherit;
+}
+.dhamaka-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ff8200;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-family: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  text-decoration-color: #6d6c6c;
+}
+
+.dhamaka-subtitle {
+  padding-bottom: 2px;
+  margin-bottom: 0;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  text-decoration: none;
+}
+.dhamaka-subtitle b {
+  font-weight: 700;
 }
